@@ -3,7 +3,6 @@
 #include<string>
 using namespace std;
 
-
 int main()
 {
 	ofstream outData;
@@ -12,8 +11,5 @@ int main()
 	outData.open("outfile.csv", ios::app);
 	outData << s<<endl;
 	outData.close();
-	system("pause");
-	system("time");
-	system("date");
 	return 0;
 }
