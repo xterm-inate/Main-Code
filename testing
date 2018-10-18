@@ -1,0 +1,73 @@
+#include<iomanip>
+#include<iostream>
+#include<fstream>
+#include<string>
+#include <limits>
+using namespace std;
+
+fstream& GotoLine(fstream& readline, string s) {
+	readline.seekg(std::ios::beg);
+		while (!EOF)
+			//for (int i = 0; i < num - 1; ++i) 
+		{
+			readline.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+	return readline;
+}
+
+int main(void)
+{
+	ofstream outData;
+	string line1;
+	int offset;
+	string search = "A10450698";
+	string s;
+	cin >> s;
+	outData.open("outfile.csv", ios::app);
+	outData << s << endl;
+	outData.close();
+
+	ifstream readfile;
+	readfile.open("outfile.csv");
+	string line;
+	if (readfile.is_open())
+	{
+		while (getline(readfile, line))
+		{
+			cout << line << '\n';
+		}
+		//readfile.close();
+		while (!readfile.eof())
+			//for (int i = 0; i < num - 1; ++i) 
+		{
+			getline(readfile, line1);
+			if ((offset = line1.find(search, 0))) != string::npos)
+				cout << "found" << endl;
+			else
+				cout << "not found" << endl;
+		}
+		readfile.close();
+	}
+	else cout << "Unable to open file";
+	
+/*	
+	if (readfile.is_open()) {
+		while (!readfile.eof())
+			//for (int i = 0; i < num - 1; ++i) 
+		{
+			getline(readfile, line1);
+			if ((offset = line1.find(search, 0)) != string::npos)
+			cout << "found" << endl;
+			else 
+				cout << "not found" << endl;
+		}
+		readfile.close();
+	}
+	else
+	{
+		cout << "could not open file" << endl;
+	}*/
+	system("pause");
+
+	return 0;
+}
