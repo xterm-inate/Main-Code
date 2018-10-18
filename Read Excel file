@@ -1,0 +1,24 @@
+#include<iomanip>
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<wchar.h>
+#include <ctime>
+#include<Windows.h>
+using namespace std;
+
+
+int main()
+{
+	ofstream outData;
+	string s;
+	cin >> s;
+	outData.open("outfile.csv", ios::app);
+	outData << s<<endl;
+	outData.close();
+  
+	system("pause");
+	system("time");
+	system("date");
+	return 0;
+}
