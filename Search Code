@@ -1,0 +1,50 @@
+#include<iomanip>
+#include<iostream>
+#include<fstream>
+#include<string>
+#include <limits>
+using namespace std;
+
+int main(void)
+{
+	//Writefile
+	/*ofstream outData;
+	string s;
+	cin >> s;
+	outData.open("outfile.csv", ios::app);
+	outData << s <<s<< endl << s << endl;;
+	outData.close();
+	*/
+//Read File	
+	ifstream myfile("outfile.csv");
+	string line;
+	string s;
+	cin >> s;
+	if (myfile.is_open()) {
+
+		while (!myfile.eof()) {
+			unsigned int curLine = 0;
+			while (getline(myfile, line,',')) { // I changed this, see below
+				curLine++;
+				if (line.find(s, 0) != string::npos) {
+					cout << "found: " << s << "line: " << curLine << endl;
+				}
+			}
+			/*getline(myfile, line, ',');
+			cout << line;
+			if (s != line) {
+				cout << "found";
+				getline(myfile, line);
+				cout<<line;
+				break;
+			}
+			*/
+		
+		}
+		myfile.close();
+	}
+	else cout << "Unable to open file";
+	system("pause");
+
+	return 0;
+}
