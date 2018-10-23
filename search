@@ -1,0 +1,47 @@
+#include "pch.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <iomanip>
+
+int main()
+{
+	unsigned pos_1;
+	bool found = false;
+	std::string informations, inputinfo, firstname, lastname;
+	std::ifstream input("information.csv");
+	//std::ofstream outputfile("information.csv", std::ios::app);
+
+	std::cout << "Enter the A Number " << std::endl;
+	std::cin >> informations;
+
+	if (input.fail())
+	{
+		std::cout << "Bad file" << std::endl;
+	}
+	else
+	{
+		while (!input.eof())
+		{
+			
+			std::getline(input, inputinfo, ',');
+			if (pos_1 = inputinfo.find(informations, 0) != std::string::npos)
+			{
+				std::cout << std::setw(15) << std::left << "A Number" << std::setw(15) << std::left << "First Name" << std::setw(15) << std::left << "Last Name" << std::endl;
+				std::getline(input, firstname, ',');
+				std::getline(input, lastname, 'A');
+				std::cout << std::setw(15) << std::left << informations << std::setw(15) << std::left << firstname << std::setw(15) << std::left << lastname<< std::endl;
+				found = true;
+			}
+		}
+		if (!found)
+		{
+			std::cout << "The A-Number specified does not exist in our database." << std::endl;
+		}
+	}
+
+	//outputfile.close();
+	input.close();
+	system("pause");
+	return 0;
+}
